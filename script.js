@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read = false) {
+function Book(title, author, pages, read) {
   if(!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
@@ -15,8 +15,8 @@ function Book(title, author, pages, read = false) {
 }
 
 
-function addBookToLibrary(title, author, pages) {
-  const book = new Book(title, author, pages)
+function addBookToLibrary(title, author, pages, read = false) {
+  const book = new Book(title, author, pages, read)
   myLibrary.push(book);
 }
 
@@ -26,6 +26,28 @@ addBookToLibrary('水浒传', '施耐庵', 850);
 addBookToLibrary('三国演义', '罗贯中', 1350);
 addBookToLibrary('红楼梦', '曹雪芹' ,1150);
 
-for(const book of myLibrary) {
-  console.log(book);
+
+
+function displayBooks() {
+  const booktable = document.querySelector('.booktable');
+
+  for(const book of myLibrary) {
+    console.log(book);
+    const tr = document.createElement('tr');
+    const titleth = document.createElement('th');
+    titleth.textContent = book.title;
+    tr.appendChild(titleth);
+    const authortd = document.createElement('td');
+    authortd.textContent = book.author;
+    tr.appendChild(authortd);
+    const pagestd = document.createElement('td');
+    pagestd.textContent = book.pages;
+    tr.appendChild(pagestd);
+    const readtd = document.createElement('td');
+    readtd.textContent = book.read ? '已读' : '未读';
+    tr.appendChild(readtd);
+    booktable.appendChild(tr);
+  }
 }
+
+displayBooks();
