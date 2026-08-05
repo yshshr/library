@@ -32,7 +32,7 @@ function displayBooks() {
   const booktable = document.querySelector('.booktable');
 
   for(const book of myLibrary) {
-    console.log(book);
+    // console.log(book);
     const tr = document.createElement('tr');
     const titleth = document.createElement('th');
     titleth.textContent = book.title;
@@ -51,3 +51,15 @@ function displayBooks() {
 }
 
 displayBooks();
+
+const addbookBtn = document.querySelector('.addbook-btn');
+const bookDialog = document.querySelector('.book-dialog');
+const confirmBtn = document.querySelector('#confirm');
+
+addbookBtn.addEventListener('click',()=>{
+  bookDialog.showModal();
+})
+confirmBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  bookDialog.close();
+})

@@ -8,13 +8,35 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <table class="booktable">
-    <tr>
-      <th>书名</th>
-      <th>作者</th>
-      <th>页数</th>
-      <th>是否已读</th>
-    </tr>
-  </table>
+  <div class="container">
+    <table class="booktable">
+      <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>页数</th>
+        <th>是否已读</th>
+      </tr>
+    </table>
+    <button class="addbook-btn">新建图书</button>
+    <dialog class="book-dialog">
+      <form class="book-form" >
+        <lable for="book-author">作者</lable>
+        <input type="text" name="bookAuthor" id="book-author">
+        <label for="book-title">书名</label>
+        <input type="text" name="bookTitle" id="book-title">
+        <lable for="book-pages">页数</lable>
+        <input type="number" name="bookPages" id="book-pages">
+        <fieldset>
+          <legend>是否已读</legend>
+          <lable for="book-readed">已读</lable>
+          <input type="radio" name="bookRead" id="book-readed">
+          <lable for="book-unread">未读</lable>
+          <input type="radio" name="bookRead" id="book-unread">
+        </fieldset>
+        <button formmethod="dialog">取消</button>
+        <button id='confirm'>确认</button>
+      </form>
+    </dialog>
+  </div>
 </body>
 </html>
