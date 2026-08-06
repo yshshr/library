@@ -22,16 +22,16 @@
       <form class="book-form" >
         <label for="book-title">书名</label>
         <input type="text" name="bookTitle" id="book-title">
-        <lable for="book-author">作者</lable>
+        <label for="book-author">作者</label>
         <input type="text" name="bookAuthor" id="book-author">        
-        <lable for="book-pages">页数</lable>
+        <label for="book-pages">页数</label>
         <input type="number" name="bookPages" id="book-pages">
         <fieldset>
           <legend>是否已读</legend>
-          <lable for="book-readed">已读</lable>
-          <input type="radio" name="bookRead" id="book-readed">
-          <lable for="book-unread">未读</lable>
-          <input type="radio" name="bookRead" id="book-unread">
+          <label for="book-readed">已读</label>
+          <input type="radio" name="bookRead" id="book-readed" value="readed">
+          <label for="book-unread">未读</label>
+          <input type="radio" name="bookRead" id="book-unread" value="unread">
         </fieldset>
         <button formmethod="dialog" value="cancel">取消</button>
         <button id='confirm' value="confirm">确认</button>

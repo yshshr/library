@@ -58,6 +58,7 @@ displayBooks();
 const addbookBtn = document.querySelector('.addbook-btn');
 const bookDialog = document.querySelector('.book-dialog');
 const confirmBtn = document.querySelector('#confirm');
+const bookForm = document.querySelector('.book-form');
 
 addbookBtn.addEventListener('click',()=>{
   bookDialog.showModal();
@@ -67,10 +68,12 @@ confirmBtn.addEventListener('click',(e)=>{
   const titleInput = document.querySelector('#book-title');
   const authorInput = document.querySelector('#book-author');  
   const pagesInput = document.querySelector('#book-pages');
-  // document.querySelector('#');
-  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, false);
+  const readRadio = document.querySelector("input[name='bookRead']:checked");
+  const bookRead = (readRadio ? (readRadio.value === 'readed' ? true : false) : false);
+  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, bookRead);
   const booktable = document.querySelector('.booktable');
   booktable.appendChild(createBookTrNode(myLibrary[myLibrary.length-1]));
+  bookForm.reset();
   bookDialog.close();
 })
 
