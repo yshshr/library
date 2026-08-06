@@ -32,22 +32,25 @@ function displayBooks() {
   const booktable = document.querySelector('.booktable');
 
   for(const book of myLibrary) {
-    // console.log(book);
-    const tr = document.createElement('tr');
-    const titleth = document.createElement('th');
-    titleth.textContent = book.title;
-    tr.appendChild(titleth);
-    const authortd = document.createElement('td');
-    authortd.textContent = book.author;
-    tr.appendChild(authortd);
-    const pagestd = document.createElement('td');
-    pagestd.textContent = book.pages;
-    tr.appendChild(pagestd);
-    const readtd = document.createElement('td');
-    readtd.textContent = book.read ? '已读' : '未读';
-    tr.appendChild(readtd);
-    booktable.appendChild(tr);
+    booktable.appendChild(createBookTrNode(book));
   }
+}
+
+function createBookTrNode(book) {
+  const tr = document.createElement('tr');
+  const titleth = document.createElement('th');
+  titleth.textContent = book.title;
+  tr.appendChild(titleth);
+  const authortd = document.createElement('td');
+  authortd.textContent = book.author;
+  tr.appendChild(authortd);
+  const pagestd = document.createElement('td');
+  pagestd.textContent = book.pages;
+  tr.appendChild(pagestd);
+  const readtd = document.createElement('td');
+  readtd.textContent = book.read ? '已读' : '未读';
+  tr.appendChild(readtd);
+  return tr;
 }
 
 displayBooks();
@@ -61,5 +64,13 @@ addbookBtn.addEventListener('click',()=>{
 })
 confirmBtn.addEventListener('click',(e)=>{
   e.preventDefault();
+  const titleInput = document.querySelector('#book-title');
+  const authorInput = document.querySelector('#book-author');  
+  const pagesInput = document.querySelector('#book-pages');
+  // document.querySelector('#');
+  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, false);
+  const booktable = document.querySelector('.booktable');
+  booktable.appendChild(createBookTrNode(myLibrary[myLibrary.length-1]));
   bookDialog.close();
 })
+

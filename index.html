@@ -20,10 +20,10 @@
     <button class="addbook-btn">新建图书</button>
     <dialog class="book-dialog">
       <form class="book-form" >
-        <lable for="book-author">作者</lable>
-        <input type="text" name="bookAuthor" id="book-author">
         <label for="book-title">书名</label>
         <input type="text" name="bookTitle" id="book-title">
+        <lable for="book-author">作者</lable>
+        <input type="text" name="bookAuthor" id="book-author">        
         <lable for="book-pages">页数</lable>
         <input type="number" name="bookPages" id="book-pages">
         <fieldset>
@@ -33,8 +33,8 @@
           <lable for="book-unread">未读</lable>
           <input type="radio" name="bookRead" id="book-unread">
         </fieldset>
-        <button formmethod="dialog">取消</button>
-        <button id='confirm'>确认</button>
+        <button formmethod="dialog" value="cancel">取消</button>
+        <button id='confirm' value="confirm">确认</button>
       </form>
     </dialog>
   </div>
