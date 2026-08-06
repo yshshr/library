@@ -14,6 +14,9 @@ function Book(title, author, pages, read) {
   }
 }
 
+Book.prototype.toggleReadStatus = function() {
+  this.read = !this.read;
+}
 
 function addBookToLibrary(title, author, pages, read = false) {
   const book = new Book(title, author, pages, read)
@@ -30,6 +33,9 @@ addBookToLibrary('红楼梦', '曹雪芹' ,1150);
 
 function displayBooks() {
   const booktable = document.querySelector('.booktable');
+  while(booktable.children.length > 1) {
+    booktable.removeChild(booktable.lastElementChild);
+  }
 
   for(const book of myLibrary) {
     booktable.appendChild(createBookTrNode(book));
@@ -55,6 +61,10 @@ function createBookTrNode(book) {
   opbtn.textContent = '移除';
   opbtn.addEventListener('click',removeBookHandler);
   operatetd.appendChild(opbtn);
+  const readStaBtn = document.createElement('button');
+  readStaBtn.textContent = '修改已读状态';
+  readStaBtn.addEventListener('click',toogleReadStatusHandler);
+  operatetd.appendChild(readStaBtn);
   tr.appendChild(operatetd);  
   tr.dataset.id = book.id;
   return tr;
@@ -66,6 +76,14 @@ function removeBookHandler(e){
   const removedBookIndex = myLibrary.findIndex((book)=>book.id === bookId);
   myLibrary.splice(removedBookIndex,1);  
   trRow.parentElement.removeChild(trRow);
+}
+
+function toogleReadStatusHandler(e){
+  const trRow = e.target.parentElement.parentElement;
+  const bookId = trRow.dataset.id;
+  const toggleBook = myLibrary.find((book)=>book.id === bookId);
+  toggleBook.toggleReadStatus();
+  displayBooks();
 }
 
 displayBooks();
@@ -86,8 +104,7 @@ confirmBtn.addEventListener('click',(e)=>{
   const readRadio = document.querySelector("input[name='bookRead']:checked");
   const bookRead = (readRadio ? (readRadio.value === 'readed' ? true : false) : false);
   addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, bookRead);
-  const booktable = document.querySelector('.booktable');
-  booktable.appendChild(createBookTrNode(myLibrary[myLibrary.length-1]));
+  displayBooks();
   bookForm.reset();
   bookDialog.close();
 })
