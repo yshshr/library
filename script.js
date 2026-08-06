@@ -50,7 +50,22 @@ function createBookTrNode(book) {
   const readtd = document.createElement('td');
   readtd.textContent = book.read ? '已读' : '未读';
   tr.appendChild(readtd);
+  const operatetd = document.createElement('td');
+  const opbtn = document.createElement('button');
+  opbtn.textContent = '移除';
+  opbtn.addEventListener('click',removeBookHandler);
+  operatetd.appendChild(opbtn);
+  tr.appendChild(operatetd);  
+  tr.dataset.id = book.id;
   return tr;
+}
+
+function removeBookHandler(e){
+  const trRow = e.target.parentElement.parentElement;
+  const bookId = trRow.dataset.id;
+  const removedBookIndex = myLibrary.findIndex((book)=>book.id === bookId);
+  myLibrary.splice(removedBookIndex,1);  
+  trRow.parentElement.removeChild(trRow);
 }
 
 displayBooks();
