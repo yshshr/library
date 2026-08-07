@@ -18,5 +18,68 @@ td, tr, th {
 }
 
 .addbook-btn {
-  align-self: self-end;
+  align-self: flex-end;
+}
+
+td > button:first-of-type {
+  margin-right: 15px;
+}
+
+td {
+  text-align: center;
+}
+
+td > button,
+.addbook-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+td > button:hover,
+.addbook-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+dialog {
+  width: 80%;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  margin: 20px auto;
+  width: 300px;
+}
+
+input[type='text'] {
+  padding: 6px;
+}
+
+input[type='text'],
+input[type='number'] {
+  box-sizing: border-box;
+  margin-left: 10px;
+  width: 200px;
+}
+
+.book-form > :last-child {
+  align-self: flex-end;
+}
+
+.book-form button {
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+#confirm {
+  background-color: blue;
+  margin-left: 15px;
 }

@@ -103,7 +103,7 @@ confirmBtn.addEventListener('click',(e)=>{
   const pagesInput = document.querySelector('#book-pages');
   const readRadio = document.querySelector("input[name='bookRead']:checked");
   const bookRead = (readRadio ? (readRadio.value === 'readed' ? true : false) : false);
-  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, bookRead);
+  addBookToLibrary(titleInput.value, authorInput.value, Number(pagesInput.value), bookRead);
   displayBooks();
   bookForm.reset();
   bookDialog.close();
