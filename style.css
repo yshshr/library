@@ -38,8 +38,7 @@ td > button,
   padding: 5px 10px;
 }
 
-td > button:hover,
-.addbook-btn:hover {
+button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
