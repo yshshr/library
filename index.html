@@ -21,25 +21,28 @@
     </table>
     <button class="addbook-btn">新建图书</button>
     <dialog class="book-dialog">
-      <form class="book-form" >
+      <form class="book-form" novalidate>
         <div>
           <label for="book-title">书名</label>
-          <input type="text" name="bookTitle" id="book-title">
+          <input type="text" name="bookTitle" id="book-title" required>
+          <span></span>
         </div>
         <div>
           <label for="book-author">作者</label>
-          <input type="text" name="bookAuthor" id="book-author">        
+          <input type="text" name="bookAuthor" id="book-author" required>        
+          <span></span>
         </div>
         <div>
           <label for="book-pages">页数</label>
-          <input type="number" name="bookPages" id="book-pages">
+          <input type="number" name="bookPages" id="book-pages" required>
+          <span></span>
         </div>
         <fieldset>
           <legend>是否已读</legend>
           <label for="book-readed">已读</label>
           <input type="radio" name="bookRead" id="book-readed" value="readed">
           <label for="book-unread">未读</label>
-          <input type="radio" name="bookRead" id="book-unread" value="unread">
+          <input type="radio" name="bookRead" id="book-unread" value="unread" checked>
         </fieldset>
         <div>
           <button formmethod="dialog" value="cancel">取消</button>

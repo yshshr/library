@@ -92,12 +92,18 @@ const addbookBtn = document.querySelector('.addbook-btn');
 const bookDialog = document.querySelector('.book-dialog');
 const confirmBtn = document.querySelector('#confirm');
 const bookForm = document.querySelector('.book-form');
+const bookTitle = document.querySelector('#book-title');
+const bookAuthor = document.querySelector('#book-author');
+const bookPages = document.querySelector('#book-pages');
 
 addbookBtn.addEventListener('click',()=>{
   bookDialog.showModal();
 })
 confirmBtn.addEventListener('click',(e)=>{
   e.preventDefault();
+  if(!bookTitleHandler() || !bookAuthorHandler() || !bookPagesHandler()) {
+    return;
+  }
   const titleInput = document.querySelector('#book-title');
   const authorInput = document.querySelector('#book-author');  
   const pagesInput = document.querySelector('#book-pages');
@@ -109,3 +115,58 @@ confirmBtn.addEventListener('click',(e)=>{
   bookDialog.close();
 })
 
+bookTitle.addEventListener('input', bookTitleHandler);
+bookTitle.addEventListener('focusout', bookTitleHandler);
+bookAuthor.addEventListener('input', bookAuthorHandler);
+bookAuthor.addEventListener('focusout', bookAuthorHandler);
+bookPages.addEventListener('input', bookPagesHandler);
+bookPages.addEventListener('focusout', bookPagesHandler);
+
+
+function bookTitleHandler() {
+  if(bookTitle.validity.valueMissing) {
+    showError('#book-title', '书名是必填项！');
+    bookTitle.setCustomValidity('书名是必填项！');
+    return false;
+  } else {
+    clearError('#book-title');
+    bookTitle.setCustomValidity('');
+    return true;
+  }
+}
+
+function bookAuthorHandler() {
+  if(bookAuthor.validity.valueMissing) {
+    showError('#book-author', '作者是必填项！');
+    bookAuthor.setCustomValidity('作者是必填项！');
+    return false;
+  } else {
+    clearError('#book-author');
+    bookAuthor.setCustomValidity('');
+    return true;
+  }
+}
+
+function bookPagesHandler() {
+  if(bookPages.validity.valueMissing) {
+    showError('#book-pages', '页数是必填项！');
+    bookPages.setCustomValidity('页数是必填项！');
+    return false;
+  } else {
+    clearError('#book-pages');
+    bookPages.setCustomValidity('');
+    return true;
+  }
+}
+
+function showError(elementSelector, errorMsg) {
+  const span = document.querySelector(`${elementSelector} + span`);
+  span.textContent = errorMsg;
+  span.className = 'error active';
+}
+
+function clearError(elementSelector) {
+  const span = document.querySelector(`${elementSelector} + span`);
+  span.textContent = '';
+  span.className = 'error';
+}
